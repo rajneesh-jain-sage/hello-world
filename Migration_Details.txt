@@ -1,0 +1,248 @@
+Hi Sumit,
+
+Request to apply the Aug18 migrations to RELEASE schemas. 
+
+Environment :
+----------------
+Dbprf02: release_owner_03
+Dbprf03 : acct_global 
+Dbprf04 : release_owner_01, release_owner_02, tpls_owner_01
+
+
+Thanks,
+Rajneesh
+
+
+
+Hi DBA,
+
+Please apply full migrate.feb18, migrate.feb18.*, and migrate.feb18.global to:
+
+                dbprf03:               acct_global
+                dbprf04:               release_owner_01, release_owner_01, tpls
+dbprf02:               release_owner_03
+
+Attached is the latest checked-in mega views file.
+
+Thanks,
+Eric
+
+
+<rajneesh@intacct.com>; Chaitanya Alla <calla@intacct.com>
+Subject: RE: Perfsac - DB Release Update (migrations)
+
+Hi All,
+ 
+Following migrations have been applied on RELEASE schemas of Perf Sacramento .
+ 
+Environment :
+----------------
+Dbprf02: release_owner_03
+Dbprf03 : acct_global 
+Dbprf04 : release_owner_01, release_owner_02, tpls_owner_01
+ 
+Migrations :
+----------------
+
+- migrate.may18 -  r190175 
+ - migrate.may18.09 - r191409 
+ - migrate.may18.14 - r192074 
+ - migrate.may18.15 - r192215 
+ - migrate.may18.15.global - r192181 
+-  migrate.may18.mega_views – r190159
+
+I have created restore point on Dbprf02, Dbprf04.
+
+Kindly check and let me know if everything is fine, Then I will drop restore point.
+ 
+ 
+Thanks,
+Sumit
+
+
+Hi DBA,
+
+Please apply delta of migrate.may18 (revision 187170) to:
+
+                Dbprf02:              TPLS, main_owner_01, main_owner_02
+                Dbprf04:              main_owner_03
+                Dev30:                  QADB, TPLS, Nov17_owner_03
+Dev02:                  Main
+
+Attached is the delta from svn and the mega views. 
+
+Thanks,
+Eric
+
+
+Hi DBA,
+
+Please apply full migrate.feb18, revision 180881 to:
+
+                Dbprf02:              TPLS, main_owner_01, main_owner_02
+                Dbprf04:              main_owner_03
+
+Attached is the mega views.
+
+Thanks,
+Eric
+
+
+Hi DBA,
+
+Please apply the latest of migrate.may17.* to:
+
+                Migrate.may17.ims:
+                                Dbprf03:              acct_ims
+
+                Migrate.may17, migrate.may17.post, migrate.may17.dba:
+                Dbprf04:              tpls, release_01, release_02
+                                Dbprf03:              release_03
+
+Please use the attached “migrate.may17.mega_views” for this. This is the same as what is committed in SVN.
+
+
+Please also apply migrate.ugi.may17ocr.txt to:
+                             Dbprf02:              tpls, main01, main02
+             Dbprf04:              main03 
+
+Please use the attached “genMegaViewsDDL-UGI.txt” file.
+
+Thanks,
+Eric
+
+
+Hi Aman,
+Migrations migrate.feb17.pre.sql[r156335], migrate.feb17[r156535],migrate.feb17.post.sql [r156595] have been applied successfully on below requested schemas.
+
+DEV25             :  All FEB17 Schemas, TPLS
+DEV47             :  All FEB17 Schemas , TPLS
+DBPRF02/04  : All MAIN schemas , TPLS
+
+Migrate.feb17.global also been applied on the corresponding global databases. Tracker has been updated with the above details.
+
+Thanks,
+Ram
+
+
+Hi Eric,
+As per our discussion have created the dblink DBLINK_MAIN03    from MAIN_OWNER_03 to RELEASE_OWNER_03.
+
+Thanks,
+Ram
+
+
+Hi Nilabh,
+ 
+Following migrations have been applied on RELEASE schemas of Perf Sacramento .
+ 
+Environment :
+----------------
+Dbprf02: release_owner_03
+Dbprf03 : acct_global 
+Dbprf04 : release_owner_01, release_owner_02, tpls_owner_01
+ 
+Migrations :
+----------------
+- migrate.aug16.global -  r143412 
+- migrate.aug16.12.global - r147844 
+- migrate.aug16 - r146650 
+- migrate.aug16.07 - r147104 
+- migrate.aug16.10 - r147437 
+- migrate.aug16.post.sql - r146576
+ 
+Migration tracker has been updated with the above details.
+ 
+Thanks,
+Ram
+
+Hi Nilabh,
+
+Following migrations have been applied on RELEASE schemas of Perf Sacramento .
+
+Environment :
+----------------
+Dbprf02: release_owner_03
+Dbprf03 : acct_global 
+Dbprf04 : release_owner_01, release_owner_02, tpls_owner_01
+
+Migrations :
+----------------
+- migrate.aug16.global -  r143412 
+- migrate.aug16.12.global - r147844 
+- migrate.aug16 - r146650 
+- migrate.aug16.07 - r147104 
+- migrate.aug16.10 - r147437 
+- migrate.aug16.post.sql - r146576
+
+Migration tracker has been updated with the above details.
+
+Thanks,
+Ram
+
+
+Hi Chaitanya, DBA Team,
+
+Using this email trail to track for the migrations plans of performance environments
+
+1) Dev 48 India Vms- I know you already created empty Nov 16 schema, please let us know the dbid for NOV16_OWNER_01 (please confirm the schema and DB link name)? I believe the DB link is DBLINK_DEV48_AUG16_01?
+
+-          Create the empty schema as Nov16, same as Aug 16 version(DBA- Chaitanya, Ram) on Dev48 (India VM)
+-          Copy base company to new schema (Perf Team)
+-          Apply the Nov-16 migration (DBA- Chaitanya, Ram)
+-          Change configs, deploy code, and test to be sure it all works. (Perf team)
+-          Drop May-16 (DBA team)
+
+2) Perf Sac dbprfxx schema (Release and Main)- Can we apply the Aug-16 migration on "Release" schema and make it sync to "Main"  next week Tuesday (10/12)? Objective is to copy a large company from "Main" to "Release" before we apply Nov-16 migrations to "Main"
+
+Global:
+                acct_global @ dbprf03
+ 
+Schema:
+                tpls_user@dbprf04
+                release_owner_01@dbprf04
+                release_owner_02@dbprf04
+                release_owner_03@dbprf03
+
+- Apply the Aug-16 migration to Release Schema- (DBA Team)
+- Creat dblinks from MAIN_OWNER_01 to RELEASE_OWNER_01 and vice versa (if it exists, please communicate).
+- Copy the bigger company to Release (Perf Team)
+- Apply the Nov-16 migration to Main (DBA team)
+- Change configs, deploy code, and test to be sure it all works. (Perf team)
+
+
+Hi Eric,
+MAY16 migrations have been applied on the below  RELEASE schemas and updated the tracker as well. It is up to date with production.
+
+Global:
+                acct_global @ dbprf03
+
+Schema:
+                tpls_owner_01        @dbprf04
+                release_owner_01@dbprf04
+                release_owner_02@dbprf04
+                release_owner_03@dbprf02
+
+Thanks,
+Ram
+
+
+
+
+Hi Chaitanya, Ram,
+
+Can you please apply the may16 migrations to get perfSac’s release databases up to date with current production:
+
+Global:
+                acct_global @ dbprf03
+
+Schema:
+                tpls_user@dbprf04
+                release_owner_01@dbprf04
+                release_owner_02@dbprf04
+                release_owner_03@dbprf03
+
+Attached is the mega views for May16.
+
+Thanks,
+Eric
